@@ -1,33 +1,34 @@
 @echo off
 TITLE Comment/Remark Test
-SETLOCAL enableextensions
-SET e=echo
-SET e-=echo.
-SET p=pause
-CD /D "%~dp0"
-for /f %%A in ('"prompt $H & %e% on & for %%B in (1) do rem"') do set "BS=%%A"
-SET input=
+setlocal enableextensions
+set e=echo
+set e-=echo.
+set p=pause
+for /f %%A in ('"prompt $H & %e% on & for %%B in (1) do rem"') do set "bs=%%A"
+set input=
 cls
 %e%.
 %e%.
-%e%  Please press ENTER for below, and so on.. 
+%e%  Please press ENTER for below, and so on... 
+%e%  ==========================================
 %e%.
 %e%.
-SET /P input=%BS% Inserting comment with double colon ... 
+set /P i=%bs% Inserting comment with double colon ... 
 ::%e%  This is a comment this will not be displayed.
 %e%.
-SET /P input=%BS% Inserting comment with %REM ... 
+set /P i=%bs% Inserting comment with %REM ... 
 REM %e%  This is a comment this will not be displayed.
 %e%.
-SET /P input=%BS% Inserting comment and skipping it with GOTO ... 
+set /P i=%bs% Inserting comment and skipping it with GOTO ... 
 GOTO next
-SET /P input=%BS% This is a comment this will not be displayed. 
+set /P i=%bs% This is a comment this will not be displayed. 
 :next
 %e%.
-set input=
-SET /P input=%BS% Finished! 
+set /P i=%bs% Finished! 
 %e%.
-set input=
-SET /P input=%BS% Please see the coding inside this BAT file 
-set input=
+set /P i=%bs% Please see the coding inside this BATCH file 
+:exit
+cls
 %e%.
+title %SystemRoot%\system32\cmd.exe
+%e%  Goodbye!

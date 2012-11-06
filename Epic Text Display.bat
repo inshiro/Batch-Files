@@ -1,4 +1,5 @@
 @echo off
+mode con:cols=115 lines=45
 :top
 cls
 echo.
@@ -21,6 +22,7 @@ echo ﬂﬂﬂ€‹‹‹‹€ﬂﬂﬂﬂﬂ     ﬂﬂﬂﬂﬂﬂﬂﬂ€‹‹‹‹‹‹‹‹‹‹€ﬂﬂﬂﬂﬂﬂﬂﬂ≤ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ  €ﬂﬂﬂ
 echo                                                                      ≤ﬂ
 echo                                                                     ≤ﬂ
 echo.
+pause
 echo  ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹
 echo €€€ﬂﬂﬂ                                                                   ﬂﬂﬂ€€€
 echo €ﬂ              RAR Password Recovery Magic v6.1.1.328 (C) PRMS              ﬂ€
@@ -48,6 +50,7 @@ echo ∞
 echo ∞
 echo  ‹  ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹  ‹‹   ‹
 echo ﬂ‹ﬂﬂ
+pause
 echo €ﬂ Installation:
 echo ≤  """""""""""""""
 echo ±  
@@ -70,4 +73,8 @@ echo   ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ
 echo.
 echo.
 PAUSE
-:END
+:end
+cls
+%e%.
+title %SystemRoot%\system32\cmd.exe
+%e%  Goodbye!

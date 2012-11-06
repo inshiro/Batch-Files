@@ -1,34 +1,43 @@
 @echo off
-SETLOCAL ENABLEEXTENSIONS
-SET e=echo
-SET p=pause
-CD /D "%~dp0"
-for /f %%A in ('"prompt $H & %e% on & for %%B in (1) do rem"') do set "BS=%%A"
+setlocal enableextensions
+set e=echo
+set p=pause
+for /f %%A in ('"prompt $H & echo on & for %%B in (1) do rem"') do set "bs=%%A"
 mode con:cols=60 lines=8
+%e%. & %e%. & %e%  Detecting CCleaner (%PROCESSOR_ARCHITECTURE%) ...
 set c64=%ProgramFiles(x86)%\CCleaner
 set c32=%programfiles%\CCleaner
 if exist "%c64%" (
-"%c64%\CCleaner64.exe" & goto input
+"%c64%\CCleaner64.exe" & goto run
 ) else (
-"%c32%\CCleaner.exe" & goto input
+"%c32%\CCleaner.exe" & goto run
 )
-set i=
-set /P i=%BS% ERROR: CCleaner is not installed! 
-:input
+cls
+%e%.
+%e%.
+pause>nul|set /P =%bs% Error: CCleaner not found! 
+:run
 cls
 %e%.
 %e%.
 set i=
-set /P i=%BS% Do you want to shutdown your computer? [Y/n]: 
-if '%i%'==''  (goto input)
-if %i%==Y     (goto YES)
-if %i%==y     (goto YES)
-if %i%==N     (goto NO)
-if %i%==n     (goto NO)
+set /P i=%bs% Shutdown Computer? [Y/n]: 
+if '%i%'==''  goto run
+if /I %i%==y     goto YES
+if /I %i%==n     goto exit
+if /I %i%==q     goto exit
+if /I %i%==x     goto exit
+if exist "invalid.bat" (
+call invalid
+) else (
 %e%.
-set ierr=
-set /P ierr=%BS% Invalid Selection! 
+pause>nul|set /P =%bs% Invalid selection! 
+goto run
+)
 :YES
 shutdown -s -t 03 -c "Shutting down Windows..."
-:NO
-exit
+:exit
+cls
+%e%.
+title %SystemRoot%\system32\cmd.exe
+%e%  Goodbye!

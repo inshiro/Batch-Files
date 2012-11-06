@@ -1,7 +1,11 @@
 @echo off
-cd /D "%~dp0"
+title Notepad++ Batch File
 setlocal enableextensions
-for /f %%A in ('"prompt $H & echo on & for %%B in (1) do rem"') do set "BS=%%A"
+set e=echo
+set p=pause
+pushd "%cd%\"
+setlocal enableextensions
+for /f %%A in ('"prompt $H & echo on & for %%B in (1) do rem"') do set "bs=%%A"
 :top
 set t=test.txt
 if exist %t% del /F %t%
@@ -21,7 +25,12 @@ goto next
 "%SystemRoot%\system32\notepad.exe" %t%
 :next
 echo.
-set i=
-set /P i=%BS% Finished! 
 if exist %t% del /F %t%
-:END
+set i=
+set /P i=%bs% Finished! 
+:exit
+cls
+%e%.
+title %SystemRoot%\system32\cmd.exe
+%e%  Goodbye!
+popd

@@ -1,10 +1,13 @@
 @echo off
 :: Based on kill process.bat
 :inputmenu
-set input=cmd
+set input=utorrent
 mode con:cols=60 lines=10
 setlocal enableextensions
+set e=echo
+set p=pause
 color 03
+for /f %%A in ('"prompt $H & echo on & for %%B in (1) do rem"') do set "bs=%%A"
 tasklist /FI "IMAGENAME eq %input%.exe" 2>NUL | find /I /N "%input%.exe">NUL"
 if "%ERRORLEVEL%"=="1" (
 cls
@@ -12,12 +15,12 @@ echo.
 :next
 echo.
 set next=
-set /P next=%input% is not running^!
-goto inputmenu
+set /P next=%bs% %input% is not running! 
+goto exit
 )
 if "%ERRORLEVEL%"=="0" (
 set finish=
-if exist kill (
+if exist "%SystemRoot%\system32\kill.exe" (
     cls
 	echo.
     echo Killing %input%...
@@ -26,7 +29,7 @@ if exist kill (
 	echo.
     echo Killing %input%...
 	echo.
-	set /P finish=Finished^!
+	echo Finished!
 	goto next2
  ) else ( 
     cls
@@ -37,22 +40,11 @@ if exist kill (
 	echo.
     echo Killing %input%...
 	echo.
-	set /P finish=Finished^!
+	echo Finished!
 	goto next2
  )
 )
 :next2
-cls
-echo.
-set /P next2=Exit? [Y/n]: 
-if '%next2%'==''  (goto next2)
-if %next2%==Y     (goto YES)
-if %next2%==y     (goto YES)
-if %next2%==N     (goto NO)
-if %next2%==n     (goto NO)
-:YES
-exit
-:NO
 goto inputmenu
 :list
 ::mode con:cols=115 lines=45
@@ -62,4 +54,8 @@ taskmgr.exe
 echo.
 ::PAUSE
 goto inputmenu
-:END
+:exit
+cls
+%e%.
+title %SystemRoot%\system32\cmd.exe
+%e%  Goodbye!

@@ -4,6 +4,7 @@ SET e=ECHO
 SET e-=ECHO.
 SET p=PAUSE
 set c=config.ini
+pushd "%cd%\"
 CD "%~dp0"
 %e-%
 %e% username=user>>%c%
@@ -22,3 +23,4 @@ cls
 %e%.
 TITLE %SystemRoot%\system32\cmd.exe
 %e%  Goodbye!
+popd
