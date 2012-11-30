@@ -43,6 +43,9 @@ if %errorlevel% == 1 %e%  ERROR! Unable to find your Processor.
 :next
 %e%.
 %e%  Operating System: 
+ver | find "6.2" > nul
+if %errorlevel% == 0 %e%  Windows 8
+
 ver | find "6.1" > nul
 if %errorlevel% == 0 %e%  Windows 7
 
